@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Barter System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .book-list {
+            margin-top: 20px;
+        }
+        .book-item {
+            padding: 15px;
+            background: #ddd;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .remove-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">Book Barter System</div>
+    <div class="container">
+        <h2>List Your Book for Exchange</h2>
+        <input type="text" id="bookName" placeholder="Enter book name">
+        <input type="text" id="contactInfo" placeholder="Enter your contact info">
+        <button onclick="addBook()">List Book</button>
+        
+        <h3>Available Books for Exchange</h3>
+        <div class="book-list" id="bookList"></div>
+    </div>
+
+    <script>
+        function addBook() {
+            let bookName = document.getElementById('bookName').value;
+            let contactInfo = document.getElementById('contactInfo').value;
+            if (bookName === "" || contactInfo === "") {
+                alert("Please enter book name and contact info");
+                return;
+            }
+
+            let bookList = document.getElementById('bookList');
+            let bookItem = document.createElement('div');
+            bookItem.className = 'book-item';
+            bookItem.innerHTML = `<strong>${bookName}</strong> - Contact: ${contactInfo} <button class="remove-btn" onclick="this.parentElement.remove()">Remove</button>`;
+            bookList.appendChild(bookItem);
+            
+            document.getElementById('bookName').value = "";
+            document.getElementById('contactInfo').value = "";
+        }
+    </script>
+</body>
+</html>
